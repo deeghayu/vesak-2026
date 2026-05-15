@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>සිරි වෙසක් මංගල්‍යය - 2026</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;700&display=swap');
+
+        body, html {
+            margin: 0; padding: 0;
+            background: #000; color: #fff;
+            font-family: 'Abhaya Libre', serif;
+            overflow-x: hidden; scroll-behavior: smooth;
+        }
+
+        /* Background Video - Opacity 0.3 */
+        .video-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; overflow: hidden;
+        }
+        .video-bg iframe {
+            position: absolute; top: 50%; left: 50%;
+            width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh;
+            transform: translate(-50%, -50%); opacity: 0.3; pointer-events: none;
+        }
+
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.9) 100%);
+            z-index: -1;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 50px 20px; text-align: center; }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            color: #ffd700;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            margin: 0;
+        }
+
+        .video-main {
+            width: 100%; aspect-ratio: 16/9; margin: 40px 0;
+            border: 3px solid #ffd700; border-radius: 20px;
+            overflow: hidden; box-shadow: 0 0 50px rgba(255, 215, 0, 0.2);
+        }
+
+        .grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px; margin-top: 50px;
+        }
+
+        .card {
+            background: rgba(15, 15, 15, 0.9); border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px; padding: 15px; transition: 0.4s;
+        }
+
+        .card:hover { transform: translateY(-10px); border-color: #ffd700; }
+
+        .card img {
+            width: 100%; height: 200px; object-fit: cover;
+            border-radius: 12px; margin-bottom: 15px;
+            border: 1px solid #333;
+        }
+
+        h3 { color: #ffd700; font-size: 1.6rem; margin: 10px 0; }
+        p { font-size: 1.05rem; opacity: 0.8; line-height: 1.6; }
+
+        footer {
+            margin-top: 60px; padding: 40px;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            font-size: 0.9rem; opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background YouTube Video -->
+    <div class="video-bg">
+        <iframe src="https://www.youtube.com/embed/d2FI9OfkqR0?autoplay=1&mute=1&loop=1&playlist=d2FI9OfkqR0&controls=0&rel=0" frameborder="0"></iframe>
+    </div>
+    <div class="overlay"></div>
+
+    <div class="container">
+        <h1>සිරි වෙසක් මංගල්‍යය</h1>
+        <p style="font-size: 1.3rem; letter-spacing: 2px;">අසිරිමත් සම්බුදු තෙමඟුල උපහාරයකි</p>
+
+        <!-- Main Video -->
+        <div class="video-main">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/SBRWnqemVJU?start=29" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div class="grid">
+            <!-- උත්පත්තිය -->
+            <div class="card">
+                <img src="https://i.ytimg.com/vi/hduMQXJkELU/hqdefault.jpg" alt="උත්පත්තිය">
+                <h3>බෝසතුන්ගේ උත්පත්තිය</h3>
+                <p>වෙසක් පුර පසළොස්වක පොහෝ දිනක ලුම්බිණි සල් උයනේදී සිදු වූ අසිරිමත් ජනිත වීම.</p>
+            </div>
+
+            <!-- බුද්ධත්වය -->
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9sWNfP1QWfxzlxtVKFtkSSEMgV-xieoE_4w&s" alt="බුද්ධත්වය">
+                <h3>උතුම් බුද්ධත්වය</h3>
+                <p>ගයා ශීර්ෂයේ බෝධි මූලයේදී සකලවිධ කෙලෙසුන් නසා බුද්ධත්වයට පත්වීම.</p>
+            </div>
+
+            <!-- පිරිනිවන් පෑම -->
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyqDaEsdklzgsFnBcB_8OMlNdkgVckCs2ZPg&s" alt="පිරිනිවන් පෑම">
+                <h3>මහා පිරිනිවන් පෑම</h3>
+                <p>කුසිනාරා නුවර උපවත්තන සල් උයනේදී මහා පිරිනිවන් මංගල්‍යය සිදු වීම.</p>
+            </div>
+        </div>
+
+        <footer>
+            Developed by M.U.R.D.D. Fonseka | ZIYUMI BEAT STUDIO | 2026
+        </footer>
+    </div>
+
+</body>
+</html>
