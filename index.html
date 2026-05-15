@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>සිරි වෙසක් මංගල්‍යය - 2026</title>
-    <!-- Animation Library CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
@@ -25,7 +24,6 @@
             scroll-behavior: smooth;
         }
 
-        /* Background Video */
         .video-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -2; overflow: hidden;
@@ -44,12 +42,10 @@
 
         .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; text-align: center; }
 
-        /* Glowing Heading Animation */
         h1 {
             font-family: 'Abhaya Libre', serif;
             font-size: clamp(2.5rem, 8vw, 4.5rem);
             color: var(--gold);
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
             margin-bottom: 10px;
             animation: titleGlow 3s ease-in-out infinite alternate;
         }
@@ -67,13 +63,7 @@
             box-shadow: 0 0 40px rgba(0,0,0,0.5);
             transition: 0.5s;
         }
-        
-        .video-main:hover {
-            transform: scale(1.02);
-            border-color: var(--gold);
-        }
 
-        /* Grid & Cards */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -93,10 +83,9 @@
         }
 
         .card:hover {
-            transform: translateY(-15px) scale(1.03);
+            transform: translateY(-15px);
             border-color: var(--gold);
             background: rgba(255, 215, 0, 0.08);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
         }
 
         .card img {
@@ -104,72 +93,78 @@
             object-fit: cover;
             border-radius: 15px;
             margin-bottom: 15px;
-            transition: 0.5s;
-        }
-        
-        .card:hover img {
-            transform: scale(1.05);
         }
 
         .card h3 { color: var(--gold); margin: 10px 0; font-family: 'Abhaya Libre', serif; }
-        .card p { color: #ccc; font-size: 0.95rem;}
         
-        /* Modal (Full Screen Content) */
+        /* Modal Content Styling */
         #content-modal {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
+            background: rgba(0,0,0,0.97);
             backdrop-filter: blur(15px);
             z-index: 100;
             display: none;
             overflow-y: auto;
             padding: 40px 20px;
-            box-sizing: border-box;
         }
 
         .modal-content {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
-            text-align: left;
             animation: modalFadeIn 0.6s ease forwards;
         }
 
         @keyframes modalFadeIn {
-            from { opacity: 0; transform: translateY(40px) scale(0.9); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .modal-img {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 20px;
-            border: 2px solid var(--gold);
-            margin-bottom: 30px;
+            width: 100%; max-height: 400px;
+            object-fit: cover; border-radius: 20px;
+            border: 2px solid var(--gold); margin-bottom: 30px;
         }
 
         .modal-title {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
             color: var(--gold);
             font-family: 'Abhaya Libre', serif;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            text-align: center;
         }
 
-        .modal-body {
-            font-size: 1.15rem;
+        /* විස්තර ලිස්ට් එකේ ස්ටයිල් එක */
+        .modal-body-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .modal-body-list li {
+            font-size: 1.1rem;
             line-height: 1.8;
             color: #eee;
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
             text-align: justify;
         }
 
-        /* Back Button */
+        /* කරුණු වලට ඉස්සරහින් වැටෙන ලකුණ */
+        .modal-body-list li::before {
+            content: '⭐';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
         .back-btn {
-            display: inline-block;
             background: transparent;
             color: var(--gold);
             border: 1px solid var(--gold);
-            padding: 10px 25px;
+            padding: 12px 30px;
             border-radius: 50px;
             cursor: pointer;
             font-size: 1rem;
@@ -177,19 +172,9 @@
             transition: 0.3s;
         }
 
-        .back-btn:hover {
-            background: var(--gold);
-            color: #000;
-            transform: translateX(-5px);
-        }
+        .back-btn:hover { background: var(--gold); color: #000; }
 
-        footer {
-            margin-top: 80px;
-            padding: 40px;
-            opacity: 0.6;
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255,215,0,0.1);
-        }
+        footer { margin-top: 80px; padding: 40px; opacity: 0.6; font-size: 0.9rem; border-top: 1px solid rgba(255,215,0,0.1); }
     </style>
 </head>
 <body>
@@ -199,84 +184,105 @@
     </div>
     <div class="overlay"></div>
 
-    <div class="container" id="main-site">
-        <!-- Animation: Fade Down -->
+    <div class="container">
         <header data-aos="fade-down" data-aos-duration="1200">
-            <h1>සිරි වෙසක් මංගල්‍යය</h1>
-            <p style="letter-spacing: 2px; color: #aaa; margin-top: 0;">අසිරිමත් සම්බුදු තෙමඟුල උපහාරයකි</p>
+            <h1>උතුම්  වෙසක් මංගල්‍යය</h1>
+            <p style="letter-spacing: 2px; color: #aaa;">අසිරිමත් සම්බුදු තෙමඟුලට ගොකරැලි විදු මාතාවගේ  උපහාරයකි — 2026</p>
         </header>
 
-        <!-- Animation: Zoom In -->
-        <div class="video-main" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+        <div class="video-main" data-aos="zoom-in" data-aos-duration="1000">
             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/SBRWnqemVJU?start=29" frameborder="0" allowfullscreen></iframe>
         </div>
 
         <div class="grid">
-            <!-- Animation: Fade Up, delay elements -->
-            <div class="card" onclick="openContent('birth')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+            <div class="card" onclick="openContent('birth')" data-aos="fade-up" data-aos-delay="100">
                 <img src="https://i.ytimg.com/vi/hduMQXJkELU/hqdefault.jpg" alt="උත්පත්තිය">
                 <h3>බෝසතුන්ගේ උත්පත්තිය</h3>
-                <p>වැඩි විස්තර කියවීමට මෙතැන Click කරන්න...</p>
+                <p>වැඩි විස්තර සඳහා මෙතැන Click කරන්න...</p>
             </div>
 
-            <div class="card" onclick="openContent('enlightenment')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+            <div class="card" onclick="openContent('enlightenment')" data-aos="fade-up" data-aos-delay="300">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9sWNfP1QWfxzlxtVKFtkSSEMgV-xieoE_4w&s" alt="බුද්ධත්වය">
                 <h3>උතුම් බුද්ධත්වය</h3>
-                <p>වැඩි විස්තර කියවීමට මෙතැන Click කරන්න...</p>
+                <p>වැඩි විස්තර සඳහා මෙතැන Click කරන්න...</p>
             </div>
 
-            <div class="card" onclick="openContent('death')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+            <div class="card" onclick="openContent('death')" data-aos="fade-up" data-aos-delay="500">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyqDaEsdklzgsFnBcB_8OMlNdkgVckCs2ZPg&s" alt="පිරිනිවන් පෑම">
                 <h3>මහා පිරිනිවන් පෑම</h3>
-                <p>වැඩි විස්තර කියවීමට මෙතැන Click කරන්න...</p>
+                <p>වැඩි විස්තර සඳහා මෙතැන Click කරන්න...</p>
             </div>
         </div>
 
-        <footer data-aos="fade-in" data-aos-duration="1000" data-aos-anchor-placement="top-bottom">
-            Developed by M.U.R.D.D. Fonseka | ZIYUMI BEAT STUDIO | 2026
+        <footer>
+            Developed by M.U.R.D.D. Fonseka | G.C.C. I.C.T. CLUB & MEDIA UNIT | 2026
         </footer>
     </div>
 
-    <!-- Full Content Modal -->
     <div id="content-modal">
         <div class="modal-content">
             <button class="back-btn" onclick="closeContent()">← ආපසු (Back)</button>
             <img id="m-img" class="modal-img" src="" alt="">
             <h2 id="m-title" class="modal-title"></h2>
-            <div id="m-body" class="modal-body"></div>
+            <ul id="m-body-list" class="modal-body-list">
+                <!-- කරුණු ටික JavaScript එකෙන් මෙතනට වැටෙයි -->
+            </ul>
         </div>
     </div>
 
-    <!-- Animation Library JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // AOS නිවැරදිව වැඩ කරන්න Init කරන්න ඕනේ
-        AOS.init({
-            once: true // එක පාරක් විතරක් animate වෙන්න (scroll back කරද්දී නෙමේ)
-        });
+        AOS.init({ once: true });
 
         const data = {
             birth: {
                 title: "බෝසතුන්ගේ උත්පත්තිය",
                 img: "https://i.ytimg.com/vi/hduMQXJkELU/hqdefault.jpg",
-                text: "ගෞතම බුදුරජාණන් වහන්සේගේ උත්පත්තිය සිදුවූයේ වෙසක් පුර පසළොස්වක පොහොය දිනකයි. උපන් ස්ථානය වන්නේ වර්තමාන දකුණු නේපාලයේ පිහිටි ලුම්බිණි සල් උයනයි. මව්පියන් වූයේ මහාමායා දේවිය සහ සුද්ධෝදන රජුය. බෝසතාණන් වහන්සේ උපත ලැබූ විගස සත් පියුම් මත ඇවිද ගිය බවත්, 'අග්ගෝ හමස්මි ලෝකස්ස' යනුවෙන් අභීත නාදයක් කළ බවත් බෞද්ධ ඉතිහාසයේ සඳහන් වේ."
+                points: [
+                    "ස්ථානය: වර්තමාන දකුණු නේපාලයේ පිහිටි ලුම්බිණි සල් උයන.",
+                    "කාලය: වෙසක් පුර පසළොස්වක පොහොය දිනකදී.",
+                    "මව්පියන්: මව මහාමායා දේවිය වන අතර පියා සුද්ධෝදන රජුය.",
+                    "විශේෂත්වය: බෝසතාණන් වහන්සේ උපත ලැබූ විගස සත් පියුම් මත ඇවිද ගිය බවත්, මුළු ලෝකය පුරාම මහා ආලෝකයක් පැතිර ගිය බවත් සඳහන් වේ."
+                ]
             },
             enlightenment: {
                 title: "උතුම් බුද්ධත්වය",
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9sWNfP1QWfxzlxtVKFtkSSEMgV-xieoE_4w&s",
-                text: "වයස අවුරුදු 29 දී අභිනිෂ්ක්‍රමණය කළ සිද්ධාර්ථ තවුසාණෝ, වසර 6 ක් පුරා දුෂ්කර ක්‍රියා කිරීමෙන් පසු මධ්‍යම ප්‍රතිපදාව අනුගමනය කළහ. පසුව නේරංජරා නදිය අසබඩ බුද්ධගයාවේදී ඇසතු වෘක්ෂ මූලයේ භාවනා කරමින් සිටියදී වෙසක් පුර පසළොස්වක පොහොය දිනක උදෑසන සකලවිධ කෙළෙස් නසා උතුම් සම්මා සම්බුද්ධත්වයට පත් වූ සේක."
+                points: [
+                    "ස්ථානය හා කාලය: මීට වසර 2600කට පෙර, බුද්ධගයාවේ ඇසතු වෘක්ෂ මූලයේදී සිදුවිය.",
+                    "පූර්ව ඉතිහාසය: අන්ත දෙකෙන් මිදී මධ්‍යම ප්‍රතිපදාව අනුගමනය කරමින් ආනාපානසති භාවනාව පුහුණු කළහ.",
+                    "බුදුවීම: වයස අවුරුදු 35 දී ස්වකීය ප්‍රඥාවෙන් චතුරාර්ය සත්‍යය අවබෝධ කරගෙන ලොව්තුරා බුද්ධත්වයට පත් වූහ.",
+                    "මඟපෙන්වීම: කිසිදු ගුරුවරයෙකු නොමැතිව ස්වයංභූ ඥානයෙන් සත්‍යය අවබෝධ කරගත්හ.",
+                    "සංකේතය: බුදුබවට පත්වීම නිරූපණය කිරීමට බෝධි වෘක්ෂය භාවිතා කරයි."
+                ]
             },
             death: {
                 title: "මහා පිරිනිවන් පෑම",
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyqDaEsdklzgsFnBcB_8OMlNdkgVckCs2ZPg&s",
-                text: "බුදුරජාණන් වහන්සේ වසර 45 ක් පුරා දෙව් මිනිසුන්ට සද්ධර්මය දේශනා කර වයස අවුරුදු 80 දී කුසිනාරා නුවර මල්ල රජදරුවන්ගේ උපවත්තන සල් උයනේදී පිරිනිවන් පෑ සේක. උන්වහන්සේගේ අවසන් අවවාදය වූයේ 'මහණෙනි, සියලු සංස්කාර ධර්මයෝ විනාශ වන සුළුය. එබැවින් අප්‍රමාදව කුසල් දහම්හි යෙදෙන්න' යන්නයි."
+                points: [
+                    "ස්ථානය: කුසිනාරා නුවර මල්ල රජදරුවන්ගේ උපවත්තන සල් උයනේදී.",
+                    "කාලය: වයස අවුරුදු 80 දී වෙසක් පුර පසළොස්වක පොහෝ දිනකදී.",
+                    "අවසන් බුද්ධ වචනය: 'සියලු සංස්කාර ධර්මයෝ නැසෙන සුළුය, එබැවින් අප්‍රමාදව කුසල් දම්හි යෙදෙන්න'.",
+                    "අවසන් ශ්‍රාවකයා: සුභද්‍ර පරිබ්‍රාජකයා උන්වහන්සේගේ අවසන් ශ්‍රාවකයා විය.",
+                    "පණිවිඩය: බුදු සිරුර අවසන් වුවද උන්වහන්සේගේ ධර්මය අකාලිකව පවතින බව මින් සනිටුහන් වේ."
+                ]
             }
         };
 
         function openContent(key) {
-            document.getElementById('m-title').innerText = data[key].title;
-            document.getElementById('m-img').src = data[key].img;
-            document.getElementById('m-body').innerText = data[key].text;
+            const item = data[key];
+            document.getElementById('m-title').innerText = item.title;
+            document.getElementById('m-img').src = item.img;
+            
+            // ලිස්ට් එක ක්ලියර් කරලා අලුත් කරුණු එකතු කරනවා
+            const listContainer = document.getElementById('m-body-list');
+            listContainer.innerHTML = ''; 
+            
+            item.points.forEach(point => {
+                const li = document.createElement('li');
+                li.innerText = point;
+                listContainer.appendChild(li);
+            });
             
             document.getElementById('content-modal').style.display = 'block';
             document.body.style.overflow = 'hidden';
@@ -287,6 +293,5 @@
             document.body.style.overflow = 'auto';
         }
     </script>
-
 </body>
 </html>
