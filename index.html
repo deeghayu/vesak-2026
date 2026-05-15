@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> වෛශාක්‍ය මංගල්‍යය - බුද්ධ වර්ෂ 2570 </title>
+    <title>වෛශාක්‍ය මංගල්‍යය - බුද්ධ වර්ෂ 2570</title>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
@@ -11,8 +11,9 @@
 
         :root {
             --gold: #ffd700;
-            --dark-bg: #0a0a0a;
-            --glass: rgba(255, 255, 255, 0.08);
+            --dark-bg: #050505;
+            --glass: rgba(255, 255, 255, 0.05);
+            --accent: #ff9900;
         }
 
         body, html {
@@ -24,6 +25,7 @@
             scroll-behavior: smooth;
         }
 
+        /* Ambient Background */
         .video-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -2; overflow: hidden;
@@ -31,150 +33,149 @@
         .video-bg iframe {
             position: absolute; top: 50%; left: 50%;
             width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh;
-            transform: translate(-50%, -50%); opacity: 0.15; pointer-events: none;
+            transform: translate(-50%, -50%); opacity: 0.12; pointer-events: none;
         }
 
         .overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, transparent 10%, rgba(0,0,0,0.95) 100%);
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.9) 100%);
             z-index: -1;
         }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; text-align: center; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 80px 20px; text-align: center; }
 
+        /* Header Animation */
         h1 {
             font-family: 'Abhaya Libre', serif;
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-size: clamp(2.2rem, 7vw, 4.2rem);
             color: var(--gold);
-            margin-bottom: 10px;
-            animation: titleGlow 3s ease-in-out infinite alternate;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: titleGlow 4s ease-in-out infinite alternate;
         }
 
         @keyframes titleGlow {
-            from { text-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
-            to { text-shadow: 0 0 30px rgba(255, 215, 0, 0.7), 0 0 10px var(--gold); }
+            from { text-shadow: 0 0 15px rgba(255, 215, 0, 0.2); }
+            to { text-shadow: 0 0 35px rgba(255, 215, 0, 0.6), 0 0 10px var(--gold); }
         }
 
+        .sub-header {
+            color: #aaa;
+            font-weight: 300;
+            letter-spacing: 1px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* Video Frame Styling */
         .video-main {
-            width: 100%; aspect-ratio: 16/9; margin: 40px 0;
-            border: 2px solid rgba(255, 215, 0, 0.2);
-            border-radius: 20px;
+            width: 100%; aspect-ratio: 16/9; margin: 50px 0;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 0 40px rgba(0,0,0,0.5);
-            transition: 0.5s;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 20px rgba(255, 215, 0, 0.1);
+            transition: 0.5s ease;
         }
+        .video-main:hover { border-color: var(--gold); transform: scale(1.01); }
 
+        /* Card Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
         }
 
         .card {
             background: var(--glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            border-radius: 20px;
-            padding: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 25px;
             cursor: pointer;
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-align: left;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
         }
+
+        .card::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .card:hover::before { left: 100%; }
 
         .card:hover {
             transform: translateY(-15px);
             border-color: var(--gold);
-            background: rgba(255, 215, 0, 0.08);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.1);
         }
 
         .card img {
-            width: 100%; height: 200px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin-bottom: 15px;
+            width: 100%; height: 220px;
+            object-fit: cover; border-radius: 18px;
+            margin-bottom: 20px;
+            filter: grayscale(20%); transition: 0.5s;
         }
+        .card:hover img { filter: grayscale(0%); }
 
-        .card h3 { color: var(--gold); margin: 10px 0; font-family: 'Abhaya Libre', serif; }
-        
-        /* Modal Content Styling */
+        .card h3 { color: var(--gold); font-size: 1.5rem; margin-bottom: 12px; font-family: 'Abhaya Libre', serif; }
+        .card p { color: #888; font-size: 0.95rem; }
+
+        /* Modal View */
         #content-modal {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.97);
-            backdrop-filter: blur(15px);
-            z-index: 100;
-            display: none;
-            overflow-y: auto;
-            padding: 40px 20px;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.98); backdrop-filter: blur(20px);
+            z-index: 1000; display: none; overflow-y: auto; padding: 40px 20px;
         }
 
-        .modal-content {
-            max-width: 850px;
-            margin: 0 auto;
-            animation: modalFadeIn 0.6s ease forwards;
-        }
-
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .modal-content { max-width: 800px; margin: 40px auto; animation: fadeInUp 0.7s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
         .modal-img {
-            width: 100%; max-height: 400px;
-            object-fit: cover; border-radius: 20px;
-            border: 2px solid var(--gold); margin-bottom: 30px;
+            width: 100%; border-radius: 25px; margin-bottom: 30px;
+            border: 1px solid var(--gold); box-shadow: 0 0 30px rgba(255,215,0,0.2);
         }
 
-        .modal-title {
-            font-size: clamp(1.8rem, 5vw, 2.8rem);
-            color: var(--gold);
-            font-family: 'Abhaya Libre', serif;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        /* විස්තර ලිස්ට් එකේ ස්ටයිල් එක */
-        .modal-body-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
+        .modal-title { font-size: 2.5rem; color: var(--gold); font-family: 'Abhaya Libre', serif; margin-bottom: 20px; text-align: center; }
+        
+        .modal-body-list { list-style: none; padding: 0; }
         .modal-body-list li {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #eee;
-            margin-bottom: 15px;
-            padding-left: 30px;
-            position: relative;
-            text-align: justify;
+            font-size: 1.15rem; line-height: 1.8; color: #ddd; margin-bottom: 20px;
+            padding: 15px 20px 15px 50px; background: rgba(255,255,255,0.03);
+            border-radius: 15px; position: relative;
         }
-
-        /* කරුණු වලට ඉස්සරහින් වැටෙන ලකුණ */
         .modal-body-list li::before {
-            content: '⭐';
-            position: absolute;
-            left: 0;
-            color: var(--gold);
+            content: '☸'; position: absolute; left: 15px; top: 18px; color: var(--gold); font-size: 1.4rem;
         }
 
         .back-btn {
-            background: transparent;
-            color: var(--gold);
-            border: 1px solid var(--gold);
-            padding: 12px 30px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-bottom: 30px;
-            transition: 0.3s;
+            background: transparent; color: #fff; border: 1px solid #444;
+            padding: 12px 25px; border-radius: 50px; cursor: pointer;
+            margin-bottom: 30px; transition: 0.3s;
+        }
+        .back-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* Modern Footer */
+        footer {
+            margin-top: 100px; padding: 60px 20px;
+            border-top: 1px solid rgba(255,215,0,0.1);
+            background: linear-gradient(transparent, rgba(255,215,0,0.03));
         }
 
-        .back-btn:hover { background: var(--gold); color: #000; }
+        .dev-name {
+            color: var(--gold); text-decoration: none; font-weight: 700;
+            font-size: 1.1rem; letter-spacing: 1px; transition: 0.3s;
+        }
+        .dev-name:hover { text-shadow: 0 0 10px var(--gold); }
 
-        footer { margin-top: 80px; padding: 40px; opacity: 0.6; font-size: 0.9rem; border-top: 1px solid rgba(255,215,0,0.1); }
+        .unit-tag {
+            display: block; font-size: 0.8rem; margin-top: 10px;
+            color: #666; letter-spacing: 3px; text-transform: uppercase;
+        }
+
     </style>
 </head>
 <body>
@@ -185,86 +186,85 @@
     <div class="overlay"></div>
 
     <div class="container">
-        <header data-aos="fade-down" data-aos-duration="1200">
-            <h1>වෛශාක්‍ය මංගල්‍යය - බුද්ධ වර්ෂ 2570  </h1>
-            <p style="letter-spacing: 2px; color: #aaa;">අසිරිමත් සම්බුදු තෙමඟුලට ගොකරැලි විදු මාතාවගේ  උපහාරයකි — 2026</p>
+        <header data-aos="fade-down" data-aos-duration="1500">
+            <h1>වෛශාක්‍ය මංගල්‍යය</h1>
+            <p class="sub-header">බුද්ධ වර්ෂ 2570 - අසිරිමත් සම්බුදු තෙමඟුලට ගොකරැලි විදු මාතාවගේ උපහාරයකි.</p>
         </header>
 
-        <div class="video-main" data-aos="zoom-in" data-aos-duration="1000">
+        <div class="video-main" data-aos="zoom-in">
             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/SBRWnqemVJU?start=29" frameborder="0" allowfullscreen></iframe>
         </div>
 
         <div class="grid">
             <div class="card" onclick="openContent('birth')" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://i.ytimg.com/vi/hduMQXJkELU/hqdefault.jpg" alt="උත්පත්තිය">
-                <h3>බෝසතුන්ගේ උත්පත්තිය</h3>
-                <p>වැඩි විස්තර සඳහා මෙතැන Click කරන්න...</p>
+                <img src="https://i.ytimg.com/vi/hduMQXJkELU/hqdefault.jpg" alt="Birth">
+                <h3>බෝසත් උත්පත්තිය</h3>
+                <p>ලුම්බිණි සල් උයනේ සිදු වූ ඒ උතුම් ආශ්චර්යය...</p>
             </div>
 
             <div class="card" onclick="openContent('enlightenment')" data-aos="fade-up" data-aos-delay="300">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9sWNfP1QWfxzlxtVKFtkSSEMgV-xieoE_4w&s" alt="බුද්ධත්වය">
-                <h3>උතුම් බුද්ධත්වය</h3>
-                <p>වැඩි විස්තර සඳහා මෙතැන Click කරන්න...</p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9sWNfP1QWfxzlxtVKFtkSSEMgV-xieoE_4w&s" alt="Enlightenment">
+                <h3>ලොව්තුරා බුද්ධත්වය</h3>
+                <p>බුද්ධගයාවේ ඇසතු රුක් මූලයේදී සත්‍යය අවබෝධ කර ගැනීම...</p>
             </div>
 
             <div class="card" onclick="openContent('death')" data-aos="fade-up" data-aos-delay="500">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyqDaEsdklzgsFnBcB_8OMlNdkgVckCs2ZPg&s" alt="පිරිනිවන් පෑම">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyqDaEsdklzgsFnBcB_8OMlNdkgVckCs2ZPg&s" alt="Parinirvana">
                 <h3>මහා පිරිනිවන් පෑම</h3>
-                <p>වැඩි විස්තර සඳහා මෙතැන Click කරන්න...</p>
+                <p>කුසිනාරා නුවර උපවත්තන සල් උයනේදී සිදු වූ සංවේගජනක සමුගැනීම...</p>
             </div>
         </div>
 
-        <footer>
-            Developed by M.U.R.D.D. Fonseka | G.C.C. I.C.T. CLUB & MEDIA UNIT | 2026
+        <footer data-aos="fade-up">
+            <p style="color: #555; margin-bottom: 10px;">&copy; 2026 All Rights Reserved.</p>
+            <a href="#" class="dev-name">M.U.R.D.D. Fonseka</a>
+            <span class="unit-tag">G.C.C. I.C.T. CLUB & MEDIA UNIT</span>
         </footer>
     </div>
 
+    <!-- Modal View -->
     <div id="content-modal">
         <div class="modal-content">
-            <button class="back-btn" onclick="closeContent()">← ආපසු (Back)</button>
+            <button class="back-btn" onclick="closeContent()">← ආපසු යන්න</button>
             <img id="m-img" class="modal-img" src="" alt="">
             <h2 id="m-title" class="modal-title"></h2>
-            <ul id="m-body-list" class="modal-body-list">
-                <!-- කරුණු ටික JavaScript එකෙන් මෙතනට වැටෙයි -->
-            </ul>
+            <ul id="m-body-list" class="modal-body-list"></ul>
         </div>
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true });
+        AOS.init({ duration: 1000, once: true });
 
         const data = {
             birth: {
                 title: "බෝසතුන්ගේ උත්පත්තිය",
                 img: "https://i.ytimg.com/vi/hduMQXJkELU/hqdefault.jpg",
                 points: [
-                    "ස්ථානය: වර්තමාන දකුණු නේපාලයේ පිහිටි ලුම්බිණි සල් උයන.",
+                    "ස්ථානය: වර්තමාන නේපාලයේ ලුම්බිණි සල් උයන.",
                     "කාලය: වෙසක් පුර පසළොස්වක පොහොය දිනකදී.",
-                    "මව්පියන්: මව මහාමායා දේවිය වන අතර පියා සුද්ධෝදන රජුය.",
-                    "විශේෂත්වය: බෝසතාණන් වහන්සේ උපත ලැබූ විගස සත් පියුම් මත ඇවිද ගිය බවත්, මුළු ලෝකය පුරාම මහා ආලෝකයක් පැතිර ගිය බවත් සඳහන් වේ."
+                    "මව්පියන්: මහාමායා දේවිය සහ සුද්ධෝදන රජු.",
+                    "විශේෂත්වය: උපත ලැබූ විගස සත් පියුම් මත ඇවිද යමින් 'අග්ගෝ හමස්මි ලෝකස්ස' යනුවෙන් අභීත නාද පැවැත්වීම."
                 ]
             },
             enlightenment: {
                 title: "උතුම් බුද්ධත්වය",
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9sWNfP1QWfxzlxtVKFtkSSEMgV-xieoE_4w&s",
                 points: [
-                    "ස්ථානය හා කාලය: මීට වසර 2600කට පෙර, බුද්ධගයාවේ ඇසතු වෘක්ෂ මූලයේදී සිදුවිය.",
-                    "පූර්ව ඉතිහාසය: අන්ත දෙකෙන් මිදී මධ්‍යම ප්‍රතිපදාව අනුගමනය කරමින් ආනාපානසති භාවනාව පුහුණු කළහ.",
-                    "බුදුවීම: වයස අවුරුදු 35 දී ස්වකීය ප්‍රඥාවෙන් චතුරාර්ය සත්‍යය අවබෝධ කරගෙන ලොව්තුරා බුද්ධත්වයට පත් වූහ.",
-                    "මඟපෙන්වීම: කිසිදු ගුරුවරයෙකු නොමැතිව ස්වයංභූ ඥානයෙන් සත්‍යය අවබෝධ කරගත්හ.",
-                    "සංකේතය: බුදුබවට පත්වීම නිරූපණය කිරීමට බෝධි වෘක්ෂය භාවිතා කරයි."
+                    "ස්ථානය: ඉන්දියාවේ බුද්ධගයාවේ ඇසතු වෘක්ෂ මූලයේදී.",
+                    "වයස: වයස අවුරුදු 35 දී උතුම් සම්මා සම්බුද්ධත්වයට පත් විය.",
+                    "අවබෝධය: චතුරාර්ය සත්‍යය අවබෝධ කරගනිමින් කෙලෙසුන් කෙරෙන් මිදී ලෝක විදූ බවට පත් වීම.",
+                    "වැදගත්කම: වෙසක් පෝ දිනක අලුයම කාලයේදී මෙම උතුම් බුදු පදවිය ලැබූහ."
                 ]
             },
             death: {
                 title: "මහා පිරිනිවන් පෑම",
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyqDaEsdklzgsFnBcB_8OMlNdkgVckCs2ZPg&s",
                 points: [
-                    "ස්ථානය: කුසිනාරා නුවර මල්ල රජදරුවන්ගේ උපවත්තන සල් උයනේදී.",
-                    "කාලය: වයස අවුරුදු 80 දී වෙසක් පුර පසළොස්වක පොහෝ දිනකදී.",
-                    "අවසන් බුද්ධ වචනය: 'සියලු සංස්කාර ධර්මයෝ නැසෙන සුළුය, එබැවින් අප්‍රමාදව කුසල් දම්හි යෙදෙන්න'.",
-                    "අවසන් ශ්‍රාවකයා: සුභද්‍ර පරිබ්‍රාජකයා උන්වහන්සේගේ අවසන් ශ්‍රාවකයා විය.",
-                    "පණිවිඩය: බුදු සිරුර අවසන් වුවද උන්වහන්සේගේ ධර්මය අකාලිකව පවතින බව මින් සනිටුහන් වේ."
+                    "ස්ථානය: කුසිනාරා නුවර මල්ල රජදරුවන්ගේ උපවත්තන සල් උයන.",
+                    "කාලය: වයස අවුරුදු 80 දී වෙසක් පුර පසළොස්වක පොහොය දිනකදී.",
+                    "අවසාන වචනය: 'වයධම්මා සංඛාරා, අප්පමාදේන සම්පාදේථ' (සියලු සංස්කාර ධර්මයෝ නැසෙන සුළුය, අප්‍රමාදව කුසල් දම්හි යෙදෙන්න).",
+                    "පණිවිඩය: රූපකාය විනාශ වුවත් බුදුරජාණන් වහන්සේ දේශනා කළ ධර්මය ලොව පවතින බව මින් තහවුරු විය."
                 ]
             }
         };
@@ -273,17 +273,13 @@
             const item = data[key];
             document.getElementById('m-title').innerText = item.title;
             document.getElementById('m-img').src = item.img;
-            
-            // ලිස්ට් එක ක්ලියර් කරලා අලුත් කරුණු එකතු කරනවා
             const listContainer = document.getElementById('m-body-list');
             listContainer.innerHTML = ''; 
-            
             item.points.forEach(point => {
                 const li = document.createElement('li');
                 li.innerText = point;
                 listContainer.appendChild(li);
             });
-            
             document.getElementById('content-modal').style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
