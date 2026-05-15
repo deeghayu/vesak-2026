@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>සිරි වෙසක් මංගල්‍යය - 2026</title>
+    <!-- Animation Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;700&family=Noto+Sans+Sinhala:wght@300;500;700&display=swap');
 
@@ -30,23 +33,30 @@
         .video-bg iframe {
             position: absolute; top: 50%; left: 50%;
             width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh;
-            transform: translate(-50%, -50%); opacity: 0.2; pointer-events: none;
+            transform: translate(-50%, -50%); opacity: 0.15; pointer-events: none;
         }
 
         .overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, transparent 10%, rgba(0,0,0,0.9) 100%);
+            background: radial-gradient(circle, transparent 10%, rgba(0,0,0,0.95) 100%);
             z-index: -1;
         }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; text-align: center; }
 
+        /* Glowing Heading Animation */
         h1 {
             font-family: 'Abhaya Libre', serif;
             font-size: clamp(2.5rem, 8vw, 4.5rem);
             color: var(--gold);
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
             margin-bottom: 10px;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { text-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+            to { text-shadow: 0 0 30px rgba(255, 215, 0, 0.7), 0 0 10px var(--gold); }
         }
 
         .video-main {
@@ -55,13 +65,19 @@
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 0 40px rgba(0,0,0,0.5);
+            transition: 0.5s;
+        }
+        
+        .video-main:hover {
+            transform: scale(1.02);
+            border-color: var(--gold);
         }
 
         /* Grid & Cards */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            gap: 30px;
             margin-top: 50px;
         }
 
@@ -72,14 +88,15 @@
             border-radius: 20px;
             padding: 20px;
             cursor: pointer;
-            transition: 0.4s;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-align: left;
         }
 
         .card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px) scale(1.03);
             border-color: var(--gold);
-            background: rgba(255, 215, 0, 0.05);
+            background: rgba(255, 215, 0, 0.08);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
         }
 
         .card img {
@@ -87,9 +104,15 @@
             object-fit: cover;
             border-radius: 15px;
             margin-bottom: 15px;
+            transition: 0.5s;
+        }
+        
+        .card:hover img {
+            transform: scale(1.05);
         }
 
         .card h3 { color: var(--gold); margin: 10px 0; font-family: 'Abhaya Libre', serif; }
+        .card p { color: #ccc; font-size: 0.95rem;}
         
         /* Modal (Full Screen Content) */
         #content-modal {
@@ -99,7 +122,7 @@
             background: rgba(0,0,0,0.95);
             backdrop-filter: blur(15px);
             z-index: 100;
-            display: none; /* පටන් ගද්දි පේන්නේ නැහැ */
+            display: none;
             overflow-y: auto;
             padding: 40px 20px;
             box-sizing: border-box;
@@ -109,12 +132,12 @@
             max-width: 800px;
             margin: 0 auto;
             text-align: left;
-            animation: fadeIn 0.5s ease;
+            animation: modalFadeIn 0.6s ease forwards;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(40px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .modal-img {
@@ -157,13 +180,15 @@
         .back-btn:hover {
             background: var(--gold);
             color: #000;
+            transform: translateX(-5px);
         }
 
         footer {
-            margin-top: 60px;
+            margin-top: 80px;
             padding: 40px;
             opacity: 0.6;
             font-size: 0.9rem;
+            border-top: 1px solid rgba(255,215,0,0.1);
         }
     </style>
 </head>
@@ -175,37 +200,39 @@
     <div class="overlay"></div>
 
     <div class="container" id="main-site">
-        <h1>සිරි වෙසක් මංගල්‍යය</h1>
-        <p style="letter-spacing: 2px; color: #aaa;">අසිරිමත් සම්බුදු තෙමඟුල උපහාරයකි</p>
+        <!-- Animation: Fade Down -->
+        <header data-aos="fade-down" data-aos-duration="1200">
+            <h1>සිරි වෙසක් මංගල්‍යය</h1>
+            <p style="letter-spacing: 2px; color: #aaa; margin-top: 0;">අසිරිමත් සම්බුදු තෙමඟුල උපහාරයකි</p>
+        </header>
 
-        <div class="video-main">
+        <!-- Animation: Zoom In -->
+        <div class="video-main" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/SBRWnqemVJU?start=29" frameborder="0" allowfullscreen></iframe>
         </div>
 
         <div class="grid">
-            <!-- Card 1 -->
-            <div class="card" onclick="openContent('birth')">
+            <!-- Animation: Fade Up, delay elements -->
+            <div class="card" onclick="openContent('birth')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                 <img src="https://i.ytimg.com/vi/hduMQXJkELU/hqdefault.jpg" alt="උත්පත්තිය">
                 <h3>බෝසතුන්ගේ උත්පත්තිය</h3>
                 <p>වැඩි විස්තර කියවීමට මෙතැන Click කරන්න...</p>
             </div>
 
-            <!-- Card 2 -->
-            <div class="card" onclick="openContent('enlightenment')">
+            <div class="card" onclick="openContent('enlightenment')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9sWNfP1QWfxzlxtVKFtkSSEMgV-xieoE_4w&s" alt="බුද්ධත්වය">
                 <h3>උතුම් බුද්ධත්වය</h3>
                 <p>වැඩි විස්තර කියවීමට මෙතැන Click කරන්න...</p>
             </div>
 
-            <!-- Card 3 -->
-            <div class="card" onclick="openContent('death')">
+            <div class="card" onclick="openContent('death')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyqDaEsdklzgsFnBcB_8OMlNdkgVckCs2ZPg&s" alt="පිරිනිවන් පෑම">
                 <h3>මහා පිරිනිවන් පෑම</h3>
                 <p>වැඩි විස්තර කියවීමට මෙතැන Click කරන්න...</p>
             </div>
         </div>
 
-        <footer>
+        <footer data-aos="fade-in" data-aos-duration="1000" data-aos-anchor-placement="top-bottom">
             Developed by M.U.R.D.D. Fonseka | ZIYUMI BEAT STUDIO | 2026
         </footer>
     </div>
@@ -220,8 +247,14 @@
         </div>
     </div>
 
+    <!-- Animation Library JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // විස්තර ටික Data Object එකක් විදිහට මෙතන තියෙනවා
+        // AOS නිවැරදිව වැඩ කරන්න Init කරන්න ඕනේ
+        AOS.init({
+            once: true // එක පාරක් විතරක් animate වෙන්න (scroll back කරද්දී නෙමේ)
+        });
+
         const data = {
             birth: {
                 title: "බෝසතුන්ගේ උත්පත්තිය",
@@ -246,12 +279,12 @@
             document.getElementById('m-body').innerText = data[key].text;
             
             document.getElementById('content-modal').style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Scroll එක නවත්වනවා
+            document.body.style.overflow = 'hidden';
         }
 
         function closeContent() {
             document.getElementById('content-modal').style.display = 'none';
-            document.body.style.overflow = 'auto'; // Scroll එක ආයේ දෙනවා
+            document.body.style.overflow = 'auto';
         }
     </script>
 
